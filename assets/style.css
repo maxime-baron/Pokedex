@@ -208,8 +208,6 @@ main {
     text-align: center;
 }
 
-
-
 .evolChain {
     width: 100%;
     margin-top: 2vh;
@@ -457,14 +455,15 @@ main {
         padding: 4.52vh 8vw 0 8vw;
     }
 
-    .rightPanel {
-        width: 18vw;
+    /* .rightPanel {
+        width: 100%;
         position: absolute;
-        top: 12vh;
-        right: 5.16vw;
-        transform: matrix(1, 0.19, 0, 0.98, 0, 0);
+        bottom: 0;
+        top: unset;
+        right: 0;
+        transform: unset;
         perspective: 800px;
-    }
+    } */
 
     .rightPanel.active {
         display: block;
