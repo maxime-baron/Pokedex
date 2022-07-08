@@ -1,0 +1,604 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+    --color-bg: #FC6C6D;
+    --color-levelToBg-valueBarre-abilitieBg: #FF6666;
+    --color-gernera-statLabel-abilitie-levelTo: #FFDFDF;
+    --color-infoContent-value-PanelBtn: #FFC8C8;
+    --color-abilitieShadow: rgb(142 0 68 / 25%);
+    --color-idShadow: rgb(255 0 0 / 25%);
+    --color-barreShadowInner: rgb(0 0 0 / 25%);
+    --color-barreShadowOuter: rgb(142 0 0 / 25%);
+    --color-panelBg: #FFEDED;
+    --color-statLabelMobil-infoContentMobil: #E95A5A;
+    --color-infoLabel-Mobil: #FFAAAA;
+    --color-whitee: #ffffff;
+}
+
+html {
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    /* font-family: 'Poppins', sans-serif; */
+    background: var(--color-bg);
+    height: 100vh;
+}
+
+h1 {
+    -webkit-text-stroke-color: #000000;
+    -webkit-text-stroke-width: 2px;
+}
+
+h2 {
+    color: var(--color-gernera-statLabel-abilitie-levelTo);
+    font-size: 2.441rem;
+}
+
+main {
+    position: relative;
+    padding: 7.66vh 5.16vw 0 5.16vw;
+    /* padding-left: 5.16vw; */
+    width: 100%;
+    height: 100%;
+}
+
+.name {
+    font-size: 10.66vh;
+    font-weight: bold;
+    color: var(--color-whitee);
+    line-height: 10.66vh;
+    text-transform: capitalize;
+}
+
+.typeGenera {
+    display: flex;
+    align-items: center;
+}
+
+.typeGenera img {
+    margin-left: 1.18vw;
+    width: 2.77vw;
+    height: auto;
+}
+
+.genera {
+    font: 4vh 500;
+    padding-left: 0.48vw;
+}
+
+.sprite {
+    transform: translate(0, -12%);
+    display: flex;
+    justify-content: center;
+}
+
+.sprite img {
+    max-width: 100%;
+    height: auto;
+    width: 32vw;
+    filter: saturate(2);
+    top: 23vh;
+}
+
+.infos {
+    position: absolute;
+    width: 24.02vw;
+    /* height: 43.11vh; */
+    top: 37.77vh;
+}
+
+.info {
+    margin-bottom: 1.77vh;
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+}
+
+.description {
+    margin-bottom: 1.77vh;
+    display: block;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.infoLabel {
+    font-weight: medium;
+    font-size: 2.88vh;
+    color: var(--color-whitee);
+}
+
+.descriptionLabel {
+    font-weight: medium;
+    font-size: 2.88vh;
+    margin-bottom: 2.44vh;
+}
+
+.infoContent {
+    font-weight: medium;
+    font-size: 2.33vh;
+    color: var(--color-infoContent-value-PanelBtn);
+}
+
+.descriptionContent {
+    font-size: 2.22vh;
+    line-height: 3vh;
+}
+
+.rightPanel {
+    width: 18vw;
+    position: absolute;
+    top: 12vh;
+    right: 5.16vw;
+    transform: matrix(1, 0.19, 0, 0.98, 0, 0);
+    perspective: 800px;
+}
+
+.id {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1vh;
+    color: var(--color-whitee);
+    font-size: 2.66vh;
+    text-shadow: 5px 5px 4px var(--color-idShadow);
+}
+
+.stat {
+    margin-bottom: 2.22vh;
+}
+
+
+.statLabel {
+    margin-bottom: 0.7vh;
+    display: block;
+    font-size: 2.66vh;
+    color: var(--color-gernera-statLabel-abilitie-levelTo);
+}
+
+.statContent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.value {
+    margin-left: 1%;
+    display: flex;
+    font-size: 1.77vh;
+    color: var(--color-infoContent-value-PanelBtn);
+}
+
+.barre {
+    width: 88%;
+    height: 12px;
+    border-radius: 9999px;
+    background: #E9E9E9;
+    box-shadow: 2px 2px 5px 2px var(--color-barreShadowOuter), inset 1px 1px 5px 1px var(--color-barreShadowInner);
+}
+
+.valueBarre {
+    width: 50%;
+    height: 100%;
+    border-radius: 9999px;
+    background: var(--color-levelToBg-valueBarre-abilitieBg);
+    box-shadow: inset 1px 1px 5px 2px var(--color-levelToBg-valueBarre-abilitieBg);
+}
+
+.abilities {
+    margin-top: 4vh;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.abilitie {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 1.5vh 0;
+    margin-bottom: 0.8vh;
+    width: 49%;
+    color: var(--color-gernera-statLabel-abilitie-levelTo);
+    background: var(--color-levelToBg-valueBarre-abilitieBg);
+    box-shadow: inset 1px 1px 5px 2px var(--color-abilitieShadow);
+    border-radius: 8px;
+    text-align: center;
+}
+
+
+
+.evolChain {
+    width: 100%;
+    margin-top: 2vh;
+    display: flex;
+    align-items: center;
+}
+
+.evolChain img {
+    width: 50%;
+    height: auto;
+    filter: saturate(2);
+}
+
+.evol {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 1.5vh 0;
+    margin: 0 1% 0.8vh 1%;
+    width: auto;
+    color: var(--color-gernera-statLabel-abilitie-levelTo);
+    background: var(--color-levelToBg-valueBarre-abilitieBg);
+    box-shadow: inset 1px 1px 5px 2px var(--color-abilitieShadow);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.levelTo {
+    font-size: 1.2vh;
+    display: flex;
+    width: 100%;
+    height: 40px;
+    background: var(--color-levelToBg-valueBarre-abilitieBg);
+    color: var(--color-gernera-statLabel-abilitie-levelTo);
+    clip-path: polygon(75% 50%, 0 0, 0 100%);
+    align-items: center;
+}
+
+.background {
+    position: fixed;
+    height: 125vh;
+    width: auto;
+    top: -12vh;
+    right: -12vh;
+}
+
+.idMobil {
+    display: none;
+    justify-content: flex-end;
+    margin-bottom: 1vh;
+    color: var(--color-whitee);
+    font-size: 2.66vh;
+    text-shadow: 5px 5px 4px var(--color-idShadow);
+}
+
+.menu {
+    display: none;
+}
+
+.typeInfo {
+    display: none;
+}
+
+.evolChainInfo {
+    display: none;
+}
+
+@media screen and (max-width: 1024px) and (min-width: 500px) {
+
+    main {
+        padding: 1.66vh 3.16vw 1.66vh 3.16vw
+    }
+
+    .sprite img {
+        width: 42vh;
+    }
+
+    .infos {
+        width: 35.29vw;
+        right: 51vw;
+        top: 62vh;
+    }
+
+    .info {
+        width: 90%;
+        max-width: 300px;
+        margin-bottom: 1.5vh;
+    }
+
+    .infoLabel {
+        font-size: 2.5vh;
+    }
+
+    .infoContent {
+        font-size: 2.03vh;
+    }
+
+    .descriptionLabel {
+        margin-bottom: 1.7vh;
+    }
+
+    .description {
+        margin-bottom: 0vh;
+    }
+
+    .descriptionContent {
+        font-size: 2.03vh;
+    }
+
+    .rightPanel {
+        transform: none;
+        perspective: none;
+        width: 33.20vw;
+        left: 51vw;
+        top: 62vh;
+    }
+
+    .id {
+        display: none;
+    }
+
+    .stat {
+        margin-bottom: 0.7vh;
+    }
+
+    .statLabel {
+        margin-bottom: 0.3vh;
+        font-size: 1.75vh;
+    }
+
+    .value {
+        margin-bottom: 0.3vh;
+        font-size: 1.17vh;
+    }
+
+    .barre {
+        box-shadow: inset 1px 1px 6px rgba(0, 0, 0, 0.25);
+    }
+
+    .abilities {
+        margin-top: 1vh;
+    }
+
+    .abilitie {
+        padding: 0.5vh 0;
+        margin-bottom: 0.4vh;
+    }
+
+    .evolChain {
+        margin-top: 0vh;
+    }
+
+    .levelTo {
+        font-size: 0.9vh;
+        height: 40px;
+    }
+}
+
+@media screen and (max-width: 500px) and (min-width: 0px) {
+
+    main {
+        padding: 3.94vh 0 3.94vh 0;
+        overflow-y: hidden;
+    }
+
+    .background {
+        position: fixed;
+        height: auto;
+        width: 124vw;
+        top: -9vh;
+        right: -7vh;
+    }
+
+    .header {
+        padding: 0 2vw;
+        margin-bottom: 2vh;
+    }
+
+    .name {
+        font-size: 3.94vh;
+        line-height: 3.94vh;
+        display: inline;
+        -webkit-text-stroke-width: 1px;
+    }
+
+    .type {
+        display: none;
+    }
+
+    .genera {
+        font-size: 1.97vh;
+        padding-left: 0.48vw;
+    }
+
+    .idMobil {
+        display: inline;
+        position: absolute;
+        top: 5vh;
+        right: 2vh;
+    }
+
+    .sprite img {
+        width: 30vh;
+    }
+
+    .menu {
+        position: absolute;
+        display: flex;
+        width: 100%;
+        font-size: 2.95vh;
+        top: 42.24vh;
+        z-index: 10;
+    }
+
+    .panelBtn {
+        font-weight: 600;
+        color: var(--color-infoContent-value-PanelBtn);
+        background-color: var(--color-panelBg);
+        padding: 1.4vh 0;
+        border-radius: 9999px;
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-transform: uppercase;
+    }
+
+    .panelBtn.active {
+        color: var(--color-levelToBg-valueBarre-abilitieBg);
+    }
+
+    .rightPanel {
+        position: absolute;
+        display: none;
+        transform: none;
+        perspective: none;
+        width: 100%;
+        top: 45.24vh;
+        left: unset;
+        right: unset;
+        background: var(--color-panelBg);
+        height: 55.59vh;
+        padding: 4.52vh 8vw 0 8vw;
+    }
+
+    .rightPanel {
+        width: 18vw;
+        position: absolute;
+        top: 12vh;
+        right: 5.16vw;
+        transform: matrix(1, 0.19, 0, 0.98, 0, 0);
+        perspective: 800px;
+    }
+
+    .rightPanel.active {
+        display: block;
+    }
+
+    .id {
+        display: none;
+    }
+
+    .evolChain {
+        display: none;
+    }
+
+    .stats {
+        display: flex;
+        flex-direction: column;
+        height: 77%;
+        justify-content: space-between;
+    }
+
+    .stat {
+        margin-bottom: 0.7vh;
+    }
+
+    .statLabel {
+        font-size: 2.45vh;
+        font-weight: 500;
+        color: var(--color-statLabelMobil-infoContentMobil);
+    }
+
+    .statContent .value {
+        font-weight: 400;
+        font-size: 1.96vh;
+        color: var(--color-infoLabel-Mobil);
+    }
+
+    .barre {
+        box-shadow: inset 1px 1px 6px --color-barreShadowInner;
+    }
+
+    .abilities {
+        height: 10%;
+        margin-top: 1vh;
+    }
+
+    .abilitie {
+        font-size: 2vh;
+        height: 65%;
+    }
+
+    .infos {
+        display: none;
+        flex-wrap: wrap;
+        width: 100%;
+        top: 45.24vh;
+        right: unset;
+        background: var(--color-panelBg);
+        height: 55.59vh;
+        padding: 6.52vh 5.06vw 0 5.06vw;
+        justify-content: space-between;
+        align-content: flex-start;
+    }
+
+    .infos.active {
+        display: flex;
+    }
+
+    .info {
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: space-between;
+        align-items: center;
+        width: 22.13vw;
+        height: 8.12vh;
+    }
+
+    .typeInfo {
+        display: flex;
+    }
+
+    .varieties {
+        display: none;
+    }
+
+    .infoLabel {
+        font-size: 1.8vh;
+        color: var(--color-infoLabel-Mobil);
+        font-weight: 400;
+    }
+
+    .infoContent {
+        font-size: 3.94vh;
+        color: var(--color-statLabelMobil-infoContentMobil);
+        font-weight: 500;
+    }
+
+    .infoContent img {
+        width: 10vw;
+        height: auto;
+    }
+
+    .evolChainInfo {
+        margin: 3vh 0;
+        display: flex;
+        width: 100%;
+        max-width: none;
+        flex-direction: row;
+    }
+
+    .evolChainInfo img {
+        width: 21.86vw;
+    }
+
+    .evolChainInfo .levelTo {
+        height: 80%;
+        font-size: 1.8vh;
+    }
+
+    .description {
+        display: block;
+        flex-direction: row;
+        max-width: none;
+        width: 100%;
+    }
+
+    .descriptionLabel {
+        font-size: 3.94vh;
+        color: var(--color-statLabelMobil-infoContentMobil);
+        font-weight: 500;
+    }
+
+    .descriptionContent {
+        font-size: 2.3vh;
+        color: var(--color-infoLabel-Mobil);
+        font-weight: 400;
+    }
+}
