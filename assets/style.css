@@ -401,11 +401,19 @@ main {
         -webkit-text-stroke-width: 1px;
     }
 
-    .type {
+    .typeGenera img {
+        display: none;
+        margin-left: 1.18vw;
+        width: 2.77vw;
+        height: auto;
+    }
+
+        {
         display: none;
     }
 
     .genera {
+        margin-top: 1vh;
         font-size: 1.97vh;
         padding-left: 0.48vw;
     }
@@ -518,7 +526,7 @@ main {
         right: unset;
         background: var(--color-panelBg);
         height: 55.59vh;
-        padding: 6.52vh 5.06vw 0 5.06vw;
+        padding: 4vh 5.06vw 0 5.06vw;
         justify-content: space-between;
         align-content: flex-start;
     }
@@ -576,6 +584,11 @@ main {
     .evolChainInfo .levelTo {
         height: 80%;
         font-size: 1.8vh;
+    }
+
+    .evol {
+        padding: 1vh 0;
+        width: -webkit-fill-available;
     }
 
     .description {

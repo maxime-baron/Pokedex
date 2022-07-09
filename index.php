@@ -123,7 +123,7 @@ switch ($pokemonSpecies->color->name) {
         <div class="panelBtn infosBtn active">Infos</div>
         <div class="panelBtn statsBtn">Stats</div>
     </div>
-    <div class="infos">
+    <div class="infos active">
         <div class="info height">
             <span class="infoLabel">Height</span>
             <span class="infoContent text-xl"><?= $pokemon->height / 10 . "m" ?></span>
@@ -137,18 +137,41 @@ switch ($pokemonSpecies->color->name) {
             <span class="infoContent">
                 <?php
                 foreach ($pokemon->types as $type) {
-                    var_dump($type);
+                    // var_dump($type);
                     echo '<img src="./assets/images/svg/Type/' . $type->type->name . 'Type.svg" alt="">';
                 }
                 ?>
             </span>
         </div>
         <div class="info evolChainInfo">
-            <img src="./assets/images/4.png" alt="">
+            <?php
+            $pokemonEvolChain = apiCall($pokemonSpecies->evolution_chain->url);
+            $evol1 =  $pokemonEvolChain->chain->species->name;
+            $evolArray = [$evol1];
+            if (!empty($pokemonEvolChain->chain->evolves_to)) {
+                $evolto2 = $pokemonEvolChain->chain->evolves_to[0]->evolution_details[0]->min_level;
+                $evolToArray = [$evolto2];
+                $evol2 = $pokemonEvolChain->chain->evolves_to[0]->species->name;
+                array_push($evolArray, $evol2);
+                if (!empty($pokemonEvolChain->chain->evolves_to[0]->evolves_to)) {
+                    $evolto3 = $pokemonEvolChain->chain->evolves_to[0]->evolves_to[0]->evolution_details[0]->min_level;
+                    array_push($evolToArray, $evolto3);
+                    $evol3 = $pokemonEvolChain->chain->evolves_to[0]->evolves_to[0]->species->name;
+                    array_push($evolArray, $evol3);
+                }
+            }
+            foreach ($evolArray as $key => $evolution) {
+                $rslt = apiCall('https://pokeapi.co/api/v2/pokemon/' . $evolution)
+            ?>
+                <a class="evol"><img src="<?= $rslt->sprites->other->{'official-artwork'}->front_default; ?>" alt=""></a>
+            <?php
+            }
+            ?>
+            <!-- <img src="./assets/images/4.png" alt="">
             <div class="levelTo w-12 h-11 text-xs flex items-center font-medium">+16</div>
             <img src="./assets/images/4.png" alt="">
             <div class="levelTo w-12 h-11 text-xs flex items-center font-medium">+32</div>
-            <img src="./assets/images/4.png" alt="">
+            <img src="./assets/images/4.png" alt=""> -->
         </div>
         <div class="info varieties">
             <span class="infoLabel">Varieties</span>
@@ -159,7 +182,7 @@ switch ($pokemonSpecies->color->name) {
             <span class="infoContent descriptionContent"><?= $desc ?></span>
         </div>
     </div>
-    <div class="rightPanel active">
+    <div class="rightPanel">
         <span class="id"><?= $id ?></span>
         <div class="stats">
             <div class="stat hp">

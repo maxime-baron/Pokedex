@@ -151,3 +151,28 @@ switch (color) {
 //         i++
 //     })
 // }
+
+let infoBtn = document.querySelector(".infosBtn")
+let statBtn = document.querySelector(".statsBtn")
+let infoPanel = document.querySelector(".infos")
+let statPanel = document.querySelector(".rightPanel")
+
+infoBtn.addEventListener('click', () => {
+    if (!infoPanel.classList.contains("active")) {
+        infoPanel.classList.add("active")
+        infoBtn.classList.add("active")
+        statPanel.classList.remove("active")
+        statBtn.classList.remove("active")
+        console.log("infoBtn")
+    }
+})
+
+statBtn.addEventListener('click', () => {
+    if (!statPanel.classList.contains("active")) {
+        statPanel.classList.add("active")
+        statBtn.classList.add("active")
+        infoPanel.classList.remove("active")
+        infoBtn.classList.remove("active")
+        console.log("statBtn")
+    }
+})
