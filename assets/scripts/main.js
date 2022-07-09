@@ -142,3 +142,12 @@ switch (color) {
         r.style.setProperty('--color-whitee', '#ffffff');
         break
 }
+// let i = 0
+// window.onload = () => {
+//     document.querySelectorAll(".valueBarre").forEach(element => {
+//         console.log(stats[i])
+//         element.style.transform = "translateX(" + stats[i] + "%);"
+//         console.log(element.style)
+//         i++
+//     })
+// }

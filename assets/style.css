@@ -45,6 +45,7 @@ main {
 }
 
 .name {
+    margin-bottom: 2vh;
     font-size: 10.66vh;
     font-weight: bold;
     color: var(--color-whitee);
@@ -171,6 +172,7 @@ main {
 
 .barre {
     width: 88%;
+    overflow: hidden;
     height: 12px;
     border-radius: 9999px;
     background: #E9E9E9;
@@ -178,7 +180,10 @@ main {
 }
 
 .valueBarre {
-    width: 50%;
+    transform-origin: left;
+    transform: translateX(-100%);
+    /* transition: 1s ease-in 2s; */
+    width: 100%;
     height: 100%;
     border-radius: 9999px;
     background: var(--color-levelToBg-valueBarre-abilitieBg);
@@ -222,6 +227,7 @@ main {
 }
 
 .evol {
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -454,16 +460,6 @@ main {
         height: 55.59vh;
         padding: 4.52vh 8vw 0 8vw;
     }
-
-    /* .rightPanel {
-        width: 100%;
-        position: absolute;
-        bottom: 0;
-        top: unset;
-        right: 0;
-        transform: unset;
-        perspective: 800px;
-    } */
 
     .rightPanel.active {
         display: block;

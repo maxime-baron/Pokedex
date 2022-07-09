@@ -8,8 +8,11 @@ include './includes/config.php';
 
 <?php
 $nbrPoke = apiCall("https://pokeapi.co/api/v2/pokemon/")->count;
-$rand = rand(1, $nbrPoke);
-$pokemon = apiCall("https://pokeapi.co/api/v2/pokemon/" . $rand);
+$pokemon = null;
+while ($pokemon == null) {
+    $rand = rand(1, $nbrPoke);
+    $pokemon = apiCall("https://pokeapi.co/api/v2/pokemon/" . $rand);
+}
 $pokemonSpecies = apiCall("https://pokeapi.co/api/v2/pokemon-species/" . $rand);
 
 foreach ($pokemonSpecies as $key => $val) {
@@ -164,7 +167,7 @@ switch ($pokemonSpecies->color->name) {
                 <div class="statContent">
                     <span class="value"><?= $hp ?></span>
                     <div class="barre">
-                        <div class="valueBarre" style="width: <?= ($hp / 2) . "%" ?>;"></div>
+                        <div class="valueBarre" style="transform: translateX(<?= (($hp / 2) - 100) ?>%);"></div>
                     </div>
                 </div>
             </div>
@@ -173,7 +176,7 @@ switch ($pokemonSpecies->color->name) {
                 <div class="statContent">
                     <span class="value"><?= $attack ?></span>
                     <div class="barre">
-                        <div class="valueBarre" style="width: <?= ($attack / 2) . "%" ?>;"></div>
+                        <div class="valueBarre" style="transform: translateX(<?= (($attack / 2) - 100) ?>%);"></div>
                     </div>
                 </div>
             </div>
@@ -182,7 +185,7 @@ switch ($pokemonSpecies->color->name) {
                 <div class="statContent">
                     <span class="value"><?= $defense ?></span>
                     <div class="barre">
-                        <div class="valueBarre" style="width: <?= ($defense / 2) . "%" ?>;"></div>
+                        <div class="valueBarre" style="transform: translateX(<?= (($defense / 2) - 100) ?>%);"></div>
                     </div>
                 </div>
             </div>
@@ -191,7 +194,7 @@ switch ($pokemonSpecies->color->name) {
                 <div class="statContent">
                     <span class="value"><?= $SA ?></span>
                     <div class="barre">
-                        <div class="valueBarre" style="width: <?= ($SA / 2) . "%" ?>;"></div>
+                        <div class="valueBarre" style="transform: translateX(<?= (($SA / 2) - 100) ?>%);"></div>
                     </div>
                 </div>
             </div>
@@ -200,7 +203,7 @@ switch ($pokemonSpecies->color->name) {
                 <div class="statContent">
                     <span class="value"><?= $SD ?></span>
                     <div class="barre">
-                        <div class="valueBarre" style="width: <?= ($SD / 2) . "%" ?>;"></div>
+                        <div class="valueBarre" style="transform: translateX(<?= (($SD / 2) - 100) ?>%);"></div>
                     </div>
                 </div>
             </div>
@@ -209,7 +212,7 @@ switch ($pokemonSpecies->color->name) {
                 <div class="statContent">
                     <span class="value"><?= $speed ?></span>
                     <div class="barre">
-                        <div class="valueBarre" style="width: <?= ($speed / 2) . "%" ?>;"></div>
+                        <div class="valueBarre" style="transform: translateX(<?= (($speed / 2) - 100) ?>%);"></div>
                     </div>
                 </div>
             </div>
@@ -242,14 +245,21 @@ switch ($pokemonSpecies->color->name) {
             foreach ($evolArray as $key => $evolution) {
                 $rslt = apiCall('https://pokeapi.co/api/v2/pokemon/' . $evolution)
             ?>
-                <div class="evol"><img src="<?= $rslt->sprites->other->{'official-artwork'}->front_default; ?>" alt=""></div>
+                <a class="evol"><img src="<?= $rslt->sprites->other->{'official-artwork'}->front_default; ?>" alt=""></a>
             <?php
             }
             ?>
         </div>
 </main>
 <script type="application/javascript">
-    let color = "<?= $pokemonSpecies->color->name ?>";
+    let color = "<?= $pokemonSpecies->color->name ?>"
+    let hp = "<?= (($hp / 2) - 100) ?>"
+    let attack = "<?= (($attack / 2) - 100) ?>"
+    let defence = "<?= (($defense / 2) - 100) ?>"
+    let SA = "<?= (($SA / 2) - 100) ?>"
+    let SD = "<?= (($SD / 2) - 100) ?>"
+    let Speed = "<?= (($speed / 2) - 100) ?>"
+    let stats = [hp, attack, attack, defence, SA, SD, Speed]
     console.log(color);
 </script>
 <script src="./assets/scripts/main.js"></script>
