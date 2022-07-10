@@ -12,6 +12,9 @@ $pokemon = null;
 while ($pokemon == null) {
     $rand = rand(1, $nbrPoke);
     $pokemon = apiCall("https://pokeapi.co/api/v2/pokemon/" . $rand);
+    if ($pokemon->sprites->other->{'official-artwork'}->front_default == null) {
+        $pokemon = null;
+    }
 }
 $pokemonSpecies = apiCall("https://pokeapi.co/api/v2/pokemon-species/" . $rand);
 
@@ -137,7 +140,6 @@ switch ($pokemonSpecies->color->name) {
             <span class="infoContent">
                 <?php
                 foreach ($pokemon->types as $type) {
-                    // var_dump($type);
                     echo '<img src="./assets/images/svg/Type/' . $type->type->name . 'Type.svg" alt="">';
                 }
                 ?>
@@ -167,11 +169,6 @@ switch ($pokemonSpecies->color->name) {
             <?php
             }
             ?>
-            <!-- <img src="./assets/images/4.png" alt="">
-            <div class="levelTo w-12 h-11 text-xs flex items-center font-medium">+16</div>
-            <img src="./assets/images/4.png" alt="">
-            <div class="levelTo w-12 h-11 text-xs flex items-center font-medium">+32</div>
-            <img src="./assets/images/4.png" alt=""> -->
         </div>
         <div class="info varieties">
             <span class="infoLabel">Varieties</span>
