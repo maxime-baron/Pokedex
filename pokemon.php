@@ -182,7 +182,7 @@ switch ($pokemonSpecies->color->name) {
             foreach ($evolArray as $key => $evolution) {
                 $rslt = apiCall('https://pokeapi.co/api/v2/pokemon/' . $evolution)
             ?>
-                <a class="evol"><img src="<?= $rslt->sprites->other->{'official-artwork'}->front_default; ?>" alt=""></a>
+                <a class="evol" href="./pokemon.php?name=<?= $evolution ?>"><img src="<?= $rslt->sprites->other->{'official-artwork'}->front_default; ?>" alt=""></a>
             <?php
             }
             ?>
