@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 :root {
-    --color-bg: #FC6C6D;
+    --color-bg: #F7F7F7;
     --color-levelToBg-valueBarre-abilitieBg: #FF6666;
     --color-gernera-statLabel-abilitie-levelTo: #FFDFDF;
     --color-infoContent-value-PanelBtn: #FFC8C8;
@@ -44,6 +44,32 @@ main {
     height: 100%;
 }
 
+a {
+    cursor: pointer;
+}
+
+form {
+    display: inline;
+    font-size: 1.8vh;
+    color: #8D8D8D;
+    width: 26.5%;
+    margin-right: 2.16vw;
+}
+
+input {
+    width: 90%;
+    border-bottom: 1px solid #D6D6D6;
+}
+
+input::placeholder {
+    color: #D6D6D6;
+}
+
+input:focus {
+    color: #8D8D8D;
+
+}
+
 .name {
     margin-bottom: 2vh;
     font-size: 10.66vh;
@@ -79,7 +105,7 @@ main {
     max-width: 100%;
     height: auto;
     width: 32vw;
-    filter: saturate(2);
+    filter: saturate(1.5);
     top: 23vh;
 }
 
@@ -94,7 +120,12 @@ main {
     margin-bottom: 1.77vh;
     display: flex;
     justify-content: space-between;
-    width: 70%;
+}
+
+.varieties {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
 }
 
 .description {
@@ -120,6 +151,16 @@ main {
     font-weight: medium;
     font-size: 2.33vh;
     color: var(--color-infoContent-value-PanelBtn);
+}
+
+.infoContent img {
+    width: 5.64vw;
+    height: 10.93vh;
+}
+
+.variet {
+    display: flex;
+    margin-top: 1.77vh;
 }
 
 .descriptionContent {
@@ -223,7 +264,7 @@ main {
 .evolChain img {
     width: 50%;
     height: auto;
-    filter: saturate(2);
+    filter: saturate(1.5);
 }
 
 .evol {
@@ -283,6 +324,187 @@ main {
     display: none;
 }
 
+.contents {
+    float: right;
+    width: 100%;
+    height: 100%;
+}
+
+.navBar {
+    height: 9.7%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 4.86vw;
+}
+
+.navBar .title {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 3.55vh;
+}
+
+.menuNav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.menuNav a {
+    color: #D6D6D6;
+    font-weight: 400;
+    font-size: 2.3vh;
+}
+
+.menuNav a:nth-child(1) {
+    margin-right: 4.16vw;
+}
+
+.menuNav a:nth-child(2) {
+    margin-right: 4.16vw;
+}
+
+.menuNav a:hover {
+    color: #8D8D8D;
+}
+
+.cardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+    height: 84.255vh;
+    overflow-y: scroll;
+    padding: 0 8vw;
+    position: relative;
+    top: -1.38vh;
+}
+
+.pokeDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1.38vh 0.86vw;
+    height: 25.33vh;
+    width: 11.875vw;
+    border-radius: 15px;
+}
+
+.pokeDiv img {
+    width: 77%;
+    height: 77%;
+    margin: 2% 0;
+    filter: saturate(1.5);
+}
+
+.bottom {
+    text-transform: uppercase;
+    display: flex;
+    font-size: 2vh;
+    width: 90%;
+    height: 16.75%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cardContainer::-webkit-scrollbar {
+    width: 10px;
+}
+
+.cardContainer::-webkit-scrollbar-thumb {
+    height: 30%;
+    background: #D6D6D6;
+    border-radius: 9999px;
+}
+
+.pagin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 7.5vh;
+    position: relative;
+    top: -1.38vh;
+    font-size: 2.3vh;
+}
+
+.paginate {
+    height: 1px;
+    width: 15px;
+    border-bottom: #000000 solid 1px;
+}
+
+.leftPagin {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.left {
+    transform-origin: bottom left;
+    transform: rotate(-33deg);
+}
+
+.leftPagin:hover .left {
+    transform: rotate(-20deg);
+}
+
+.left:nth-child(2) {
+    transform: rotate(33deg);
+    right: 16px;
+    position: relative;
+}
+
+.leftPagin:hover .left:nth-child(2) {
+    transform: rotate(20deg);
+}
+
+.rightPagin {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.right {
+    transform-origin: bottom right;
+    transform: rotate(33deg);
+}
+
+.rightPagin:hover .right {
+    transform: rotate(20deg);
+}
+
+.right.one {
+    transform: rotate(-33deg);
+    left: 16px;
+    position: relative;
+}
+
+.rightPagin:hover .right.one {
+    transform: rotate(-20deg);
+}
+
+.about {
+    margin: 30vh auto;
+    width: 70VW;
+    font-size: 5vh;
+}
+
+.about a {
+    text-decoration: underline;
+}
+
+.about a:hover {
+    color: #606060;
+}
+
+.about p {
+    margin: 3vh 0;
+}
+
 @media screen and (max-width: 1024px) and (min-width: 500px) {
 
     main {
@@ -337,6 +559,10 @@ main {
         display: none;
     }
 
+    .varieties {
+        display: none;
+    }
+
     .stat {
         margin-bottom: 0.7vh;
     }
@@ -371,6 +597,47 @@ main {
     .levelTo {
         font-size: 0.9vh;
         height: 40px;
+    }
+
+    .about {
+        margin: 10vh auto;
+        width: 70VW;
+        font-size: 5vh;
+    }
+
+}
+
+/* @media screen and (max-width: 1024px) and (min-width: 912px) {
+    .pokeDiv {
+        height: 25.33vh;
+        width: 11.875vw;
+    }
+
+    .bottom {
+        font-size: 2vh;
+    }
+} */
+
+@media screen and (max-width: 912px) and (min-width: 500px) {
+    .pokeDiv {
+        height: 18.33vh;
+        width: 25vw;
+    }
+
+    .bottom {
+        font-size: 1.2vh;
+    }
+
+    .navBar .title {
+        font-size: 2.7vh;
+    }
+
+    .menuNav a {
+        font-size: 1.5vh;
+    }
+
+    form {
+        font-size: 1vh;
     }
 }
 
@@ -408,9 +675,9 @@ main {
         height: auto;
     }
 
-        {
+    /* {
         display: none;
-    }
+    } */
 
     .genera {
         margin-top: 1vh;
@@ -474,6 +741,10 @@ main {
     }
 
     .id {
+        display: none;
+    }
+
+    .varieties {
         display: none;
     }
 
@@ -608,5 +879,40 @@ main {
         font-size: 2.3vh;
         color: var(--color-infoLabel-Mobil);
         font-weight: 400;
+    }
+
+    .pokeDiv {
+        height: 25.33vh;
+        width: 37.875vw;
+    }
+
+    .Bottom {
+        font-size: 1.6vh;
+    }
+
+    .navBar .title {
+        font-size: 2.55vh;
+    }
+
+    .menuNav {
+        justify-content: flex-end;
+    }
+
+    .menuNav a {
+        font-size: 1.7vh;
+    }
+
+    .menuNav a:nth-child(1) {
+        width: 20%;
+    }
+
+    form {
+        font-size: 1.2vh;
+    }
+
+    .about {
+        margin: 5vh auto;
+        width: 70VW;
+        font-size: 5vh;
     }
 }

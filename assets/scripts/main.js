@@ -1,5 +1,4 @@
 const r = document.querySelector(":root")
-
 switch (color) {
     case 'red':
         r.style.setProperty('--color-bg', '#FC6C6D');

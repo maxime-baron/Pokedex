@@ -1,288 +1,239 @@
 <?php
 // Config php
 include './includes/config.php';
+// HEADER
+include './chunks/header.php';
 ?>
 
-<!-- HEADER -->
-<?php include './chunks/header.php' ?>
+<!-- <div class="leftPanel">
+    <div class="search">
+        <input type="search" placeholder="Type id or Pokémon name">
+    </div>
+    <div class="filter">
 
-<?php
-$nbrPoke = apiCall("https://pokeapi.co/api/v2/pokemon/")->count;
-$pokemon = null;
-while ($pokemon == null) {
-    $rand = rand(1, $nbrPoke);
-    $pokemon = apiCall("https://pokeapi.co/api/v2/pokemon/" . $rand);
-    if ($pokemon->sprites->other->{'official-artwork'}->front_default == null) {
-        $pokemon = null;
-    }
-}
-$pokemonSpecies = apiCall("https://pokeapi.co/api/v2/pokemon-species/" . $rand);
+    </div>
+</div> -->
+<div class="contents">
+    <div class="navBar">
+        <a class="title" href="./index.php">Pokédex</a>
+        <div class="menuNav">
+            <a href="./pokemon.php">Random Pokémon</a>
+            <a href="./About.php">About</a>
+            <form action="" method="post"><input type="search" name="SEARCH" placeholder="Type id or name"></form>
+        </div>
+    </div>
+    <div class="cardContainer">
+        <?php
+        if (isset($_GET['page'])) {
+            if ($_GET['page'] < 1) {
+                $page = 1;
+                header('Location: ./index.php?page=1');
+            } else {
+                $page = $_GET['page'];
+            }
+        } else {
+            $page = 1;
+        }
+        if (isset($_POST['SEARCH'])) {
+            $page = 1;
+            $pageMax = 1;
+            $pokeInfos = apiCall("https://pokeapi.co/api/v2/pokemon/" . strtolower($_POST['SEARCH']));
+            if ($pokeInfos != null) {
+                $num = $pokeInfos->id;
+                $id = "";
+                if ($pokeInfos->sprites->other->{'official-artwork'}->front_default == null) {
+                    $sprite = "./assets/images/unknow.png";
+                } else {
+                    $sprite = $pokeInfos->sprites->other->{'official-artwork'}->front_default;
+                }
+                $color = apiCall($pokeInfos->species->url)->color->name;
 
-foreach ($pokemonSpecies as $key => $val) {
-    if ($key == "genera") {
-        foreach ($val as $value) {
-            if ($value->language->name == "en") {
-                $genus = $value->genus;
+                switch ($color) {
+                    case 'black':
+                        $colorBackground = '#2e2e2e';
+                        $colorText = '#8d8d8d';
+                        break;
+
+                    case 'blue':
+                        $colorBackground = '#90c7ff';
+                        $colorText = '#dfeaff';
+                        break;
+
+                    case 'brown':
+                        $colorBackground = '#ad8f76';
+                        $colorText = '#fde7e1';
+                        break;
+
+                    case 'gray':
+                        $colorBackground = '#bbbbbb';
+                        $colorText = '#ebebeb';
+                        break;
+
+                    case 'green':
+                        $colorBackground = '#65a57f';
+                        $colorText = '#a1fbce';
+                        break;
+
+                    case 'pink':
+                        $colorBackground = '#f5bbc3';
+                        $colorText = '#ffeaf2';
+                        break;
+
+                    case 'purple':
+                        $colorBackground = '#ad90ac';
+                        $colorText = '#efcaff';
+                        break;
+
+                    case 'red':
+                        $colorBackground = '#FC6C6D';
+                        $colorText = '#FFDFDF';
+                        break;
+
+                    case 'white':
+                        $colorBackground = '#efefef';
+                        $colorText = '#bbbbbb';
+                        break;
+
+                    case 'yellow':
+                        $colorBackground = '#ffd49e';
+                        $colorText = '#ffedd1';
+                        break;
+                }
+                switch (true) {
+                    case $num <= 9:
+                        $id = "#00" . $num;
+                        break;
+                    case $num <= 99:
+                        $id = "#0" . $num;
+                        break;
+                    case $num <= 999:
+                        $id = "#" . $num;
+                        break;
+                }
+                $name = $pokeInfos->name;
+        ?>
+                <a class="pokeDiv <?= $id ?>" style="background-color: <?= $colorBackground ?>" href="./pokemon.php?id=<?= $num ?>">
+                    <img src="<?= $sprite; ?>" alt="">
+                    <div class="bottom" style="color: <?= $colorText ?>;">
+                        <span class="nameBottom"><?= $name ?></span>
+                        <span class="idBottom"><?= $id ?></span>
+                    </div>
+                </a>
+
+            <?php
+            } else {
+            ?>
+                <h2 style="color: #666666; margin-top:20vh">This pokémon does not exist</h2>
+            <?php
+            }
+        } else {
+            $limit = 18;
+            $offset = ($page - 1) * 18;
+            $pokemons = apiCall("https://pokeapi.co/api/v2/pokemon/?offset=" . $offset . "&limit=" . $limit);
+            $pageMax = ceil($pokemons->count / 18);
+
+
+            foreach ($pokemons->results as $pokemon) {
+                $pokeInfos = apiCall($pokemon->url);
+                $num = $pokeInfos->id;
+                $id = "";
+                if ($pokeInfos->sprites->other->{'official-artwork'}->front_default == null) {
+                    $sprite = "./assets/images/unknow.png";
+                } else {
+                    $sprite = $pokeInfos->sprites->other->{'official-artwork'}->front_default;
+                }
+                $color = apiCall($pokeInfos->species->url)->color->name;
+
+                switch ($color) {
+                    case 'black':
+                        $colorBackground = '#2e2e2e';
+                        $colorText = '#8d8d8d';
+                        break;
+
+                    case 'blue':
+                        $colorBackground = '#90c7ff';
+                        $colorText = '#dfeaff';
+                        break;
+
+                    case 'brown':
+                        $colorBackground = '#ad8f76';
+                        $colorText = '#fde7e1';
+                        break;
+
+                    case 'gray':
+                        $colorBackground = '#bbbbbb';
+                        $colorText = '#ebebeb';
+                        break;
+
+                    case 'green':
+                        $colorBackground = '#65a57f';
+                        $colorText = '#a1fbce';
+                        break;
+
+                    case 'pink':
+                        $colorBackground = '#f5bbc3';
+                        $colorText = '#ffeaf2';
+                        break;
+
+                    case 'purple':
+                        $colorBackground = '#ad90ac';
+                        $colorText = '#efcaff';
+                        break;
+
+                    case 'red':
+                        $colorBackground = '#FC6C6D';
+                        $colorText = '#FFDFDF';
+                        break;
+
+                    case 'white':
+                        $colorBackground = '#efefef';
+                        $colorText = '#bbbbbb';
+                        break;
+
+                    case 'yellow':
+                        $colorBackground = '#ffd49e';
+                        $colorText = '#ffedd1';
+                        break;
+                }
+                switch (true) {
+                    case $num <= 9:
+                        $id = "#00" . $num;
+                        break;
+                    case $num <= 99:
+                        $id = "#0" . $num;
+                        break;
+                    case $num <= 999:
+                        $id = "#" . $num;
+                        break;
+                }
+                $name = $pokemon->name;
+            ?>
+                <a class="pokeDiv <?= $id ?>" style="background-color: <?= $colorBackground ?>" href="./pokemon.php?id=<?= $num ?>">
+                    <img src="<?= $sprite; ?>" alt="">
+                    <div class="bottom" style="color: <?= $colorText ?>;">
+                        <span class="nameBottom"><?= $name ?></span>
+                        <span class="idBottom"><?= $id ?></span>
+                    </div>
+                </a>
+
+        <?php
             }
         }
-    }
-    if ($key == "flavor_text_entries") {
-        foreach ($val as $value) {
-            if ($value->language->name == "en") {
-                $desc = $value->flavor_text;
-            }
-        }
-    }
-}
-
-foreach ($pokemon as $key => $val) {
-    if ($key == "stats") {
-        foreach ($val as $value) {
-            if ($value->stat->name == "hp") {
-                $hp = $value->base_stat;
-            }
-            if ($value->stat->name == "attack") {
-                $attack = $value->base_stat;
-            }
-            if ($value->stat->name == "defense") {
-                $defense = $value->base_stat;
-            }
-            if ($value->stat->name == "special-attack") {
-                $SA = $value->base_stat;
-            }
-            if ($value->stat->name == "special-defense") {
-                $SD = $value->base_stat;
-            }
-            if ($value->stat->name == "speed") {
-                $speed = $value->base_stat;
-            }
-        }
-    }
-}
-
-switch (true) {
-    case $rand <= 9:
-        $id = "#00" . $pokemon->id;
-        break;
-    case $rand <= 99:
-        $id = "#0" . $pokemon->id;
-        break;
-    case $rand <= 999:
-        $id = "#" . $pokemon->id;
-        break;
-}
-switch ($pokemonSpecies->color->name) {
-    case 'blue':
-        echo '<img src="./assets/images/svg/Background/backgroundBlue.svg" alt="" class="background">';
-        break;
-    case 'red':
-        echo '<img src="./assets/images/svg/Background/backgroundRed.svg" alt="" class="background">';
-        break;
-    case 'green':
-        echo '<img src="./assets/images/svg/Background/backgroundGreen.svg" alt="" class="background">';
-        break;
-    case 'pink':
-        echo '<img src="./assets/images/svg/Background/backgroundPink.svg" alt="" class="background">';
-        break;
-    case 'purple':
-        echo '<img src="./assets/images/svg/Background/backgroundPurple.svg" alt="" class="background">';
-        break;
-    case 'white':
-        echo '<img src="./assets/images/svg/Background/backgroundWhite.svg" alt="" class="background">';
-        break;
-    case 'brown':
-        echo '<img src="./assets/images/svg/Background/backgroundBrown.svg" alt="" class="background">';
-        break;
-    case 'black':
-        echo '<img src="./assets/images/svg/Background/backgroundBlack.svg" alt="" class="background">';
-        break;
-    case 'gray':
-        echo '<img src="./assets/images/svg/Background/backgroundGray.svg" alt="" class="background">';
-        break;
-    case 'yellow':
-        echo '<img src="./assets/images/svg/Background/backgroundYellow.svg" alt="" class="background">';
-        break;
-}
-?>
-
-<main class="">
-    <div class="header">
-        <h1 class="name"><?= $pokemon->name ?></h1>
-        <span class="idMobil"><?= $id ?></span>
-        <div class="typeGenera">
-            <?php
-            foreach ($pokemon->types as $type) {
-                // var_dump($type);
-                echo '<img src="./assets/images/svg/Type/' . $type->type->name . 'Type.svg" alt="">';
-            }
-            ?>
-            <h2 class="genera"><?= $genus ?></h2>
-        </div>
+        ?>
     </div>
-    <div class="sprite">
-        <img src=<?= $pokemon->sprites->other->{'official-artwork'}->front_default ?> alt="">
+    <div class="pagin">
+        <a class="leftPagin" href="./index.php?page=<?= $page - 1 ?>">
+            <div class="paginate left"></div>
+            <div class="paginate left"></div>
+        </a>
+        <div class="counter"><span class="currentPage"><?= $page ?></span>/<span class="maxPage"><?= $pageMax ?></span></div>
+        <a class="rightPagin" href="./index.php?page=<?= $page + 1 ?>">
+            <div class="paginate right one"></div>
+            <div class="paginate right"></div>
+        </a>
     </div>
-    <div class="menu">
-        <div class="panelBtn infosBtn active">Infos</div>
-        <div class="panelBtn statsBtn">Stats</div>
-    </div>
-    <div class="infos active">
-        <div class="info height">
-            <span class="infoLabel">Height</span>
-            <span class="infoContent text-xl"><?= $pokemon->height / 10 . "m" ?></span>
-        </div>
-        <div class="info weight">
-            <span class="infoLabel">Weight</span>
-            <span class="infoContent text-xl"><?= $pokemon->weight / 10 . "kg" ?></span>
-        </div>
-        <div class="info typeInfo">
-            <span class="infoLabel">Type</span>
-            <span class="infoContent">
-                <?php
-                foreach ($pokemon->types as $type) {
-                    echo '<img src="./assets/images/svg/Type/' . $type->type->name . 'Type.svg" alt="">';
-                }
-                ?>
-            </span>
-        </div>
-        <div class="info evolChainInfo">
-            <?php
-            $pokemonEvolChain = apiCall($pokemonSpecies->evolution_chain->url);
-            $evol1 =  $pokemonEvolChain->chain->species->name;
-            $evolArray = [$evol1];
-            if (!empty($pokemonEvolChain->chain->evolves_to)) {
-                $evolto2 = $pokemonEvolChain->chain->evolves_to[0]->evolution_details[0]->min_level;
-                $evolToArray = [$evolto2];
-                $evol2 = $pokemonEvolChain->chain->evolves_to[0]->species->name;
-                array_push($evolArray, $evol2);
-                if (!empty($pokemonEvolChain->chain->evolves_to[0]->evolves_to)) {
-                    $evolto3 = $pokemonEvolChain->chain->evolves_to[0]->evolves_to[0]->evolution_details[0]->min_level;
-                    array_push($evolToArray, $evolto3);
-                    $evol3 = $pokemonEvolChain->chain->evolves_to[0]->evolves_to[0]->species->name;
-                    array_push($evolArray, $evol3);
-                }
-            }
-            foreach ($evolArray as $key => $evolution) {
-                $rslt = apiCall('https://pokeapi.co/api/v2/pokemon/' . $evolution)
-            ?>
-                <a class="evol"><img src="<?= $rslt->sprites->other->{'official-artwork'}->front_default; ?>" alt=""></a>
-            <?php
-            }
-            ?>
-        </div>
-        <div class="info varieties">
-            <span class="infoLabel">Varieties</span>
-            <span class="infoContent text-xl"></span>
-        </div>
-        <div class="info description">
-            <div class="infoLabel descriptionLabel">Description</div>
-            <span class="infoContent descriptionContent"><?= $desc ?></span>
-        </div>
-    </div>
-    <div class="rightPanel">
-        <span class="id"><?= $id ?></span>
-        <div class="stats">
-            <div class="stat hp">
-                <span class="statLabel">HP</span>
-                <div class="statContent">
-                    <span class="value"><?= $hp ?></span>
-                    <div class="barre">
-                        <div class="valueBarre" style="transform: translateX(<?= (($hp / 2) - 100) ?>%);"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="stat attack">
-                <span class="statLabel">Attack</span>
-                <div class="statContent">
-                    <span class="value"><?= $attack ?></span>
-                    <div class="barre">
-                        <div class="valueBarre" style="transform: translateX(<?= (($attack / 2) - 100) ?>%);"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="stat defence">
-                <span class="statLabel">Defence</span>
-                <div class="statContent">
-                    <span class="value"><?= $defense ?></span>
-                    <div class="barre">
-                        <div class="valueBarre" style="transform: translateX(<?= (($defense / 2) - 100) ?>%);"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="stat spAttack">
-                <span class="statLabel">Sp.Attack</span>
-                <div class="statContent">
-                    <span class="value"><?= $SA ?></span>
-                    <div class="barre">
-                        <div class="valueBarre" style="transform: translateX(<?= (($SA / 2) - 100) ?>%);"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="stat spDefence">
-                <span class="statLabel">Sp.Defence</span>
-                <div class="statContent">
-                    <span class="value"><?= $SD ?></span>
-                    <div class="barre">
-                        <div class="valueBarre" style="transform: translateX(<?= (($SD / 2) - 100) ?>%);"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="stat speed">
-                <span class="statLabel">Speed</span>
-                <div class="statContent">
-                    <span class="value"><?= $speed ?></span>
-                    <div class="barre">
-                        <div class="valueBarre" style="transform: translateX(<?= (($speed / 2) - 100) ?>%);"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="abilities">
-            <?php
-            foreach ($pokemon->abilities as $value) {
-                echo '<div class="abilitie">' . $value->ability->name . '</div>';
-            }
-            ?>
-        </div>
-        <div class="evolChain flex items-center">
-
-            <?php
-            $pokemonEvolChain = apiCall($pokemonSpecies->evolution_chain->url);
-            $evol1 =  $pokemonEvolChain->chain->species->name;
-            $evolArray = [$evol1];
-            if (!empty($pokemonEvolChain->chain->evolves_to)) {
-                $evolto2 = $pokemonEvolChain->chain->evolves_to[0]->evolution_details[0]->min_level;
-                $evolToArray = [$evolto2];
-                $evol2 = $pokemonEvolChain->chain->evolves_to[0]->species->name;
-                array_push($evolArray, $evol2);
-                if (!empty($pokemonEvolChain->chain->evolves_to[0]->evolves_to)) {
-                    $evolto3 = $pokemonEvolChain->chain->evolves_to[0]->evolves_to[0]->evolution_details[0]->min_level;
-                    array_push($evolToArray, $evolto3);
-                    $evol3 = $pokemonEvolChain->chain->evolves_to[0]->evolves_to[0]->species->name;
-                    array_push($evolArray, $evol3);
-                }
-            }
-            foreach ($evolArray as $key => $evolution) {
-                $rslt = apiCall('https://pokeapi.co/api/v2/pokemon/' . $evolution)
-            ?>
-                <a class="evol"><img src="<?= $rslt->sprites->other->{'official-artwork'}->front_default; ?>" alt=""></a>
-            <?php
-            }
-            ?>
-        </div>
-</main>
-<script type="application/javascript">
-    let color = "<?= $pokemonSpecies->color->name ?>"
-    let hp = "<?= (($hp / 2) - 100) ?>"
-    let attack = "<?= (($attack / 2) - 100) ?>"
-    let defence = "<?= (($defense / 2) - 100) ?>"
-    let SA = "<?= (($SA / 2) - 100) ?>"
-    let SD = "<?= (($SD / 2) - 100) ?>"
-    let Speed = "<?= (($speed / 2) - 100) ?>"
-    let stats = [hp, attack, attack, defence, SA, SD, Speed]
-    console.log(color);
-</script>
-<script src="./assets/scripts/main.js"></script>
+</div>
+<script src="./assets/scripts/index.js"></script>
 </body>
 
 </html>
