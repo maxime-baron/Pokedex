@@ -18,7 +18,7 @@ include './chunks/header.php';
         <a class="title" href="./index.php">Pokédex</a>
         <div class="menuNav">
             <a href="./pokemon.php">Random Pokémon</a>
-            <a href="./About.php">About</a>
+            <a href="./about.php">About</a>
             <form action="" method="post"><input type="search" name="SEARCH" placeholder="Type id or name"></form>
         </div>
     </div>
