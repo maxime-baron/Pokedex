@@ -1,7 +1,7 @@
 # Pokedex
 
 - [GitHub](https://github.com/maxime-baron/Pokedex)
-- [Live](https://pokedex-maxime.herokuapp.com/)
+- [Live](https://pokedex-3aca1.web.app/)
 
 ## Setup
 Run this followed commands:
